@@ -23,7 +23,6 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
 });
 
 async function myMain(delay) {
-console.log("here", window)
   const smileDiv = document.getElementsByClassName("smile-shopify-init")[0]
 
   if (smileDiv != undefined) {
