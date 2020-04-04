@@ -4,6 +4,12 @@ let options = {
   smileUI: "X"
 }
 
+let evt = document.createEvent('Event');
+evt.initEvent('smileExtensionTrigger', true, false);
+
+document.addEventListener("smileExtensionTrigger", function () {
+  window.location.href = "javascript:SmileUI.openPanel()"
+})
 window.addEventListener("load", myMain(true), false);
 
 chrome.runtime.onMessage.addListener((msg, sender, response) => {
@@ -11,10 +17,13 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
     myMain(false)
     response(options);
   }
+  if (msg.action === 'openPanel') {
+    document.dispatchEvent(evt)
+  }
 });
 
 async function myMain(delay) {
-
+console.log("here", window)
   const smileDiv = document.getElementsByClassName("smile-shopify-init")[0]
 
   if (smileDiv != undefined) {
@@ -30,6 +39,7 @@ async function myMain(delay) {
         updateValue("smileJS", true)
       } else { updateIcon(false) }
       if (SmileUI) {
+        injectOnPage()
         updateIcon(true)
         updateValue("smileUI", true)
       } else {
@@ -80,4 +90,7 @@ function updateIcon(value) {
 
 function updateValue(element, value) {
   options[element] = value
+}
+
+function injectOnPage() {
 }
