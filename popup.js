@@ -4,8 +4,16 @@ const setList = msg => {
   document.getElementById("smileJS").innerText = msg.smileJS
   document.getElementById("smileUI").innerText = msg.smileUI
   if (Object.keys(msg).every((k) => !!msg[k])) {
-    document.getElementById("smileUI").innerHTML = '<button id="openPanel">Test</button>'
-    document.getElementById('openPanel').addEventListener('click', openPanel);
+    if (document.getElementById("smileUIBtn")) {
+      return
+    } else {
+      let btnEl = document.createElement("span")
+      btnEl.className = "smileUIBtn"
+      btnEl.id = "openPanel"
+      btnEl.innerText = "Open Panel"
+      document.getElementById("detectedList").appendChild(btnEl)
+      document.getElementById("openPanel").addEventListener("click", openPanel);
+    }
   }
 };
 

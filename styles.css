@@ -1,0 +1,52 @@
+body {
+	background: #fff;
+  direction: ltr;
+	font-family: Helvetica, Arial, sans-serif;
+  font-size: .8rem;
+	margin: 0;
+  min-width: 25rem;
+}
+
+.header {
+  align-items: center;
+  border-bottom: 1px solid #dbdbdb;
+  height: 4rem;
+  display: flex;
+  padding-left: 1rem;
+}
+
+.main {
+  min-height: 5rem;
+  padding: 1rem 1.5rem 0rem 1.5rem;
+}
+
+.detected {
+  columns: 2;
+  column-gap: 1.5rem;
+  line-height: 1.4rem;
+}
+
+.detected > div {
+  line-height: 2rem;
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.smileUIBtn {
+  background-color:#FFC419;
+  padding: 15px;
+  border-radius: 10px;
+  color: #000;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

@@ -10,6 +10,7 @@ evt.initEvent('smileExtensionTrigger', true, false);
 document.addEventListener("smileExtensionTrigger", function () {
   window.location.href = "javascript:SmileUI.openPanel()"
 })
+
 window.addEventListener("load", myMain(true), false);
 
 chrome.runtime.onMessage.addListener((msg, sender, response) => {
@@ -38,7 +39,6 @@ async function myMain(delay) {
         updateValue("smileJS", true)
       } else { updateIcon(false) }
       if (SmileUI) {
-        injectOnPage()
         updateIcon(true)
         updateValue("smileUI", true)
       } else {
@@ -89,7 +89,4 @@ function updateIcon(value) {
 
 function updateValue(element, value) {
   options[element] = value
-}
-
-function injectOnPage() {
 }
