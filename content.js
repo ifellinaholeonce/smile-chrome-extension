@@ -37,17 +37,20 @@ async function myMain(delay) {
       if (Smile) {
         updateIcon(true)
         updateValue("smileJS", true)
-      } else { updateIcon(false) }
+      } else {
+        updateIcon(false)
+        updateValue("smileJS", false)
+      }
       if (SmileUI) {
         updateIcon(true)
         updateValue("smileUI", true)
       } else {
         updateIcon(false)
         updateValue("smileUI", false)
-       }
+      }
     } else {
       updateIcon(false)
-      updateValue("smileJS", false)
+      updateValue("smileDiv", false)
     }
   } else {
     updateIcon(false)
