@@ -1,4 +1,3 @@
-// Update the relevant fields with the new data.
 const setList = msg => {
   document.getElementById("smileDiv").innerText = msg.smileDiv
   document.getElementById("smileJS").innerText = msg.smileJS
@@ -7,11 +6,14 @@ const setList = msg => {
     if (document.getElementById("smileUIBtn")) {
       return
     } else {
+      let footerEl = document.createElement("div")
+      footerEl.className = "footer"
       let btnEl = document.createElement("span")
       btnEl.className = "smileUIBtn"
       btnEl.id = "openPanel"
       btnEl.innerText = "Open Panel"
-      document.getElementById("detectedList").appendChild(btnEl)
+      footerEl.appendChild(btnEl)
+      document.body.appendChild(footerEl)
       document.getElementById("openPanel").addEventListener("click", openPanel);
     }
   }
@@ -29,7 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-function openPanel() {
+const openPanel = () => {
   chrome.tabs.query({
     active: true,
     currentWindow: true

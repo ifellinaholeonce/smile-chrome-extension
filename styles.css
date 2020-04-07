@@ -4,7 +4,7 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
   font-size: .8rem;
 	margin: 0;
-  min-width: 25rem;
+  min-width: 10rem;
 }
 
 .header {
@@ -15,13 +15,20 @@ body {
   padding-left: 1rem;
 }
 
+.footer {
+  border-top: 1px solid #dbdbdb;
+  height: 4rem;
+  display: flex;
+  background-color:#FFC419;
+}
+
 .main {
   min-height: 5rem;
   padding: 1rem 1.5rem 0rem 1.5rem;
 }
 
 .detected {
-  columns: 2;
+  columns: 1;
   column-gap: 1.5rem;
   line-height: 1.4rem;
 }
@@ -30,12 +37,14 @@ body {
   line-height: 2rem;
   font-size: 1rem;
   margin-bottom: 12px;
+  text-align: center;
 }
 
 .smileUIBtn {
   background-color:#FFC419;
-  padding: 15px;
-  border-radius: 10px;
+  /* padding-top: 25px; */
+  margin: auto;
+  /* border-radius: 10px; */
   color: #000;
   font-family: inherit;
   font-weight: 400;
@@ -49,4 +58,5 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  width: 100%;
 }

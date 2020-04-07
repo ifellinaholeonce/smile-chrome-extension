@@ -1,29 +1,10 @@
-let options = {
-  smileDiv: "X",
-  smileJS: "X",
-  smileUI: "X"
+const options = {
+  smileDiv: "Unavailable",
+  smileJS: "Unavailable",
+  smileUI: "Unavailable"
 }
 
-let evt = document.createEvent('Event');
-evt.initEvent('smileExtensionTrigger', true, false);
-
-document.addEventListener("smileExtensionTrigger", function () {
-  window.location.href = "javascript:SmileUI.openPanel()"
-})
-
-window.addEventListener("load", myMain(true), false);
-
-chrome.runtime.onMessage.addListener((msg, sender, response) => {
-  if (msg.action === "getList") {
-    myMain(false)
-    response(options);
-  }
-  if (msg.action === 'openPanel') {
-    document.dispatchEvent(evt)
-  }
-});
-
-async function myMain(delay) {
+const main = async delay => {
   const smileDiv = document.getElementsByClassName("smile-shopify-init")[0]
 
   if (smileDiv != undefined) {
@@ -58,7 +39,8 @@ async function myMain(delay) {
   }
 }
 
-function retrieveWindowVariables(variables) {
+//retrieve varaibles from DOM using tmp attributes
+const retrieveWindowVariables = variables => {
   var ret = {};
 
   var scriptContent = "";
@@ -83,13 +65,48 @@ function retrieveWindowVariables(variables) {
   return ret;
 }
 
-function updateIcon(value) {
+const updateIcon = value => {
   chrome.runtime.sendMessage({
     action: 'updateIcon',
     value: value
   });
 }
 
-function updateValue(element, value) {
-  options[element] = value
+const updateValue = (element, value) => {
+  options[element] = mapValue(value)
 }
+
+const mapValue = (value) => {
+  let text = value
+  switch(value) {
+    case true:
+      text = "Available"
+      break;
+    case false:
+      text = "Unavailable"
+      break;
+    default:
+      text = "Unavailable"
+  }
+  return text
+}
+
+chrome.runtime.onMessage.addListener((msg, sender, response) => {
+  if (msg.action === "getList") {
+    main(false)
+    response(options);
+  }
+  if (msg.action === 'openPanel') {
+    document.dispatchEvent(evt)
+  }
+});
+
+window.addEventListener("load", main(true), false);
+
+// This event is used to open SmileUI Panel when it is available.
+const evt = document.createEvent('Event');
+evt.initEvent('smileExtensionTrigger', true, false);
+
+document.addEventListener("smileExtensionTrigger", function () {
+  window.location.href = "javascript:SmileUI.openPanel()"
+})
