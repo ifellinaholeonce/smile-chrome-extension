@@ -91,7 +91,6 @@ const fetchSmileData = async () => {
     .then(data => { return data.json() })
     .then(res => {
       options.data = res
-      console.log(options)
     })
     .catch(error => { console.log(error) })
 }
@@ -103,10 +102,6 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
   }
   if (msg.action === 'openPanel') {
     document.dispatchEvent(evt)
-  }
-  if (msg.action === 'updateOptions') {
-    options.data = msg.data
-    console.log("options", options)
   }
 });
 
