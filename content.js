@@ -8,8 +8,11 @@ const main = async delay => {
   const smileDiv = document.getElementsByClassName("smile-shopify-init")[0]
 
   if (smileDiv != undefined) {
-    if (smileDiv.dataset["channelKey"].length > 0) {
+    let channelKey = smileDiv.dataset["channelKey"]
+    if (channelKey.length > 0) {
       updateValue("smileDiv", true)
+      options.channelKey = channelKey
+      await fetchSmileData()
 
       if (delay) { await new Promise(r => setTimeout(r, 2000)); }
 
@@ -76,6 +79,23 @@ const updateValue = (element, value) => {
   options[element] = value
 }
 
+const fetchSmileData = async () => {
+  const Url = `https://platform.smile.io/v1/smile_ui/init?channel_key=${options.channelKey}`
+  const Headers = {
+    headers: {
+      "smile-channel-key": options.channelKey,
+      "content-type": "application/json"
+    }
+  }
+  fetch(Url, Headers)
+    .then(data => { return data.json() })
+    .then(res => {
+      options.data = res
+      console.log(options)
+    })
+    .catch(error => { console.log(error) })
+}
+
 chrome.runtime.onMessage.addListener((msg, sender, response) => {
   if (msg.action === "getList") {
     main(false)
@@ -83,6 +103,10 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
   }
   if (msg.action === 'openPanel') {
     document.dispatchEvent(evt)
+  }
+  if (msg.action === 'updateOptions') {
+    options.data = msg.data
+    console.log("options", options)
   }
 });
 

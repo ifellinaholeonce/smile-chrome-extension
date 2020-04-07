@@ -8,11 +8,13 @@ body {
 }
 
 .header {
-  align-items: center;
   border-bottom: 1px solid #dbdbdb;
   height: 4rem;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding-left: 1rem;
+  line-height: 1.4rem;
 }
 
 .footer {
@@ -65,4 +67,14 @@ body {
 
 .unavailable {
   color: red;
+}
+
+.internal-link {
+  border-bottom: 1px solid #dbdbdb;
+  height: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 1rem;
+  line-height: 1.4rem;
 }
