@@ -42,9 +42,7 @@ body {
 
 .smileUIBtn {
   background-color:#FFC419;
-  /* padding-top: 25px; */
   margin: auto;
-  /* border-radius: 10px; */
   color: #000;
   font-family: inherit;
   font-weight: 400;
@@ -59,4 +57,12 @@ body {
   text-overflow: ellipsis;
   overflow: hidden;
   width: 100%;
+}
+
+.available {
+  color: green;
+}
+
+.unavailable {
+  color: red;
 }

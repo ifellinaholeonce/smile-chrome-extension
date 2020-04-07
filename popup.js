@@ -1,7 +1,10 @@
 const setList = msg => {
-  document.getElementById("smileDiv").innerText = msg.smileDiv
-  document.getElementById("smileJS").innerText = msg.smileJS
-  document.getElementById("smileUI").innerText = msg.smileUI
+  document.getElementById("smileDiv").innerText = mapValue(msg.smileDiv)
+  document.getElementById("smileDiv").classList += mapValue(msg.smileDiv)
+  document.getElementById("smileJS").innerText = mapValue(msg.smileJS)
+  document.getElementById("smileJS").classList += mapValue(msg.smileJS)
+  document.getElementById("smileUI").innerText = mapValue(msg.smileUI)
+  document.getElementById("smileUI").classList += mapValue(msg.smileUI)
   if (Object.keys(msg).every((k) => !!msg[k])) {
     if (document.getElementById("smileUIBtn")) {
       return
@@ -40,4 +43,19 @@ const openPanel = () => {
       tabs[0].id,
       { action: 'openPanel' });
   });
+}
+
+const mapValue = (value) => {
+  let text = value
+  switch (value) {
+    case true:
+      text = "Available"
+      break;
+    case false:
+      text = "Unavailable"
+      break;
+    default:
+      text = "Unavailable"
+  }
+  return text
 }

@@ -1,7 +1,7 @@
 const options = {
-  smileDiv: "Unavailable",
-  smileJS: "Unavailable",
-  smileUI: "Unavailable"
+  smileDiv: false,
+  smileJS: false,
+  smileUI: false
 }
 
 const main = async delay => {
@@ -73,22 +73,7 @@ const updateIcon = value => {
 }
 
 const updateValue = (element, value) => {
-  options[element] = mapValue(value)
-}
-
-const mapValue = (value) => {
-  let text = value
-  switch(value) {
-    case true:
-      text = "Available"
-      break;
-    case false:
-      text = "Unavailable"
-      break;
-    default:
-      text = "Unavailable"
-  }
-  return text
+  options[element] = value
 }
 
 chrome.runtime.onMessage.addListener((msg, sender, response) => {
